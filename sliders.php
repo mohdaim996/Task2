@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "INSERT INTO motor (motor1, motor2, motor3, motor4, motor5, motor6, motorState)
     VALUES ('$s1', '$s2', '$s3','$s4','$s5','$s6','$motorState');";
   If(mysqli_query($conn,$sql)){
-    echo "Data Inserted";
+    echo print_r($_POST);
   }
 
 }
