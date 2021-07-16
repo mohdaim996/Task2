@@ -13,7 +13,7 @@
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
-        
+
         .button {
             background-color: royalblue;
             ;
@@ -35,9 +35,6 @@
             color: white;
             box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
-
-        
-        
     </style>
 </head>
 
@@ -121,17 +118,31 @@
                     alert(data)
                 });
         });
-        $(".button").click(  
-            function(){
+        $(".button").click(
+            function() {
                 let btn = document.getElementById(this.id);
                 $.post("directions.php", {
-                    "btn": `${btn.id}`,
-                },
-                function(data, status) {
-                    alert(data)
-                });
+                        "btn": `${btn.id}`,
+                    },
+                    function(data, status) {
+                        alert(data)
+                    });
             }
         )
+
+        window.watsonAssistantChatOptions = {
+            integrationID: "cd954497-96c6-4877-8920-c58288a91e7c", // The ID of this integration.
+            region: "eu-de", // The region your integration is hosted in.
+            serviceInstanceID: "e324724f-9205-4b7a-9997-81d83d753080", // The ID of your service instance.
+            onLoad: function(instance) {
+                instance.render();
+            }
+        };
+        setTimeout(function() {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+            document.head.appendChild(t);
+        });
     </script>
 </body>
 

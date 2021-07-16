@@ -1,0 +1,329 @@
+{
+  "intents": [
+    {
+      "intent": "استلام",
+      "examples": [
+        {
+          "text": "ابغا استلم سيارتي"
+        },
+        {
+          "text": "ابغا سيارتي"
+        },
+        {
+          "text": "جيب سيارتي"
+        },
+        {
+          "text": "فين سيارتي"
+        },
+        {
+          "text": "هات سيارتي"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "التحية",
+      "examples": [
+        {
+          "text": "الو"
+        },
+        {
+          "text": "سلام"
+        },
+        {
+          "text": "سلام عليكم"
+        },
+        {
+          "text": "صباح الخير"
+        },
+        {
+          "text": "كيف الحال"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "تسليم",
+      "examples": [
+        {
+          "text": "ابغا اوقف سيارتي"
+        },
+        {
+          "text": "خذ سيارتي"
+        },
+        {
+          "text": "هذ سيارتي"
+        },
+        {
+          "text": "وقفلي سيارتي"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "جوال",
+      "examples": [
+        {
+          "text": "$number"
+        },
+        {
+          "text": "٠٥٦"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اعطيني رقم جوالك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_2_1626362550147",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1626362550166",
+      "previous_sibling": "handler_9_1626362550166"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1626360959171",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1626362265726"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1626362266199",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_2_1626362266215"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1626362534310",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1626362549771"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "اعطيني رقم جوالك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_8_1626362266199",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1626362266215",
+      "previous_sibling": "handler_2_1626362266215"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1626362550147",
+      "context": {
+        "phone": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_9_1626362550166"
+    },
+    {
+      "type": "standard",
+      "title": "تحية",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ياهلا"
+              },
+              {
+                "text": "اهلا وسهلا"
+              },
+              {
+                "text": "مرحبا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#التحية",
+      "dialog_node": "node_5_1626361720963",
+      "previous_sibling": "node_9_1626362534310"
+    },
+    {
+      "type": "frame",
+      "title": "تسليم",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ابشر"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تسليم",
+      "dialog_node": "node_6_1626360959171",
+      "previous_sibling": "node_5_1626361720963"
+    },
+    {
+      "type": "frame",
+      "title": "استلام",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "دحين اجبلك سيارتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#استلام",
+      "dialog_node": "node_9_1626362534310",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1626362534310",
+      "variable": "$phone",
+      "dialog_node": "slot_2_1626362550147",
+      "previous_sibling": "handler_2_1626362549771"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_6_1626360959171",
+      "variable": "$number",
+      "dialog_node": "slot_8_1626362266199",
+      "previous_sibling": "handler_1_1626362265726"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_6_1626360959171",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "مرحبا، كيف يمكنني مساعدتك؟"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "arabic skill",
+  "language": "ar",
+  "description": ""
+}
